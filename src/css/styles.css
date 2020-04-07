@@ -1,0 +1,84 @@
+html, body {
+    font-family: Helvetica, Arial, sans-serif;
+    width: 100%;
+    height: 100%;
+}
+
+body::after {
+    background: url(../media/img/bg.jpg) top center no-repeat;
+    content: "";
+    opacity: 0.1;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: -1;   
+}
+
+#container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+button {
+    border: none;
+    background: none;
+}
+
+.visualiser {
+    padding: 20px;
+}
+
+.tracks {
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+.track {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    box-sizing: border-box;
+    width: 7.5%;
+    padding: 10px;
+}
+
+.track:before {
+    content: '';
+    display: table;
+    padding-top: 100%;
+}
+
+.track-controls {
+    padding: 5px;
+    flex-grow: 1;
+    background: rgba(240, 240, 240, 0.95); 
+}
+
+.track-controls h1 {
+    margin: 5px 0;
+    text-align: center;
+    font-size: 12px;
+    -webkit-user-select: none;      
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.track-controls .gain .rc-slider {
+    margin: 0 auto;
+}
+
+.track-controls .pan {
+    display: flex;
+    justify-content: center;
+    margin: 10px 0;
+}
+
+.track-controls .play {
+    text-align: center;
+}
