@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 
-export default class Visualiser extends Component {
+export class Visualiser extends Component {
     constructor(props) {
         super(props)
         this.props.analyser.fftSize = 1024;
         this.bufferLength = this.props.analyser.frequencyBinCount;
         this.dataArray = new Uint8Array(this.bufferLength);
-        this.sliceWidth = this.props.width * 1.0 / this.bufferLength;
+        this.sliceWidth = this.props.width / this.bufferLength;
     }
 
     componentDidMount() {

@@ -1,28 +1,28 @@
-export default class AudioTrack {
-    constructor(ctx, data) {
-        this.ctx = ctx;
-
-        this.id = data.id;
-        this.title = data.title;
-
+export class Track {
+    constructor(data) {
         this.audio = new Audio();
         this.audio.preload = "none";
         this.audio.loop = true;
         this.audio.crossOrigin = "anonymous";
         this.audio.src = data.file;
+    }
+
+    init(ctx) {
+        this.ctx = ctx;
+
         this.audioNode = ctx.createMediaElementSource(this.audio);
 
         this.gainNode = ctx.createGain();
         this.gainNode.gain.value = 1;
 
-        this.output = ctx.createPanner();
-        this.output.panningModel = "equalpower";
+        this.panNode = ctx.createPanner();
+        this.panNode.panningModel = "equalpower";
 
         this.audioNode
             .connect(this.gainNode)
-            .connect(this.output)
+            .connect(this.panNode);
 
-        this.audio.play();
+        return this.panNode;
     }
 
     play() {
@@ -38,6 +38,6 @@ export default class AudioTrack {
     }
 
     pan(value) {
-        this.output.setPosition(value, 0, 1 - Math.abs(value));
+        this.panNode.setPosition(value, 0, 1 - Math.abs(value));
     }
 }

@@ -1,7 +1,14 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
+    output: {
+        publicPath: "/cycles/"
+    },
+    devServer: {
+        publicPath: "/cycles/",
+        openPage: "cycles/",
+        hot: true
+    },
     module: {
         rules: [{
             test: /\.(js|jsx)$/,
