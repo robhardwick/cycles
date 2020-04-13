@@ -5,6 +5,10 @@ import {
     SET_ANALYSER,
     PLAY_TRACK,
     PAUSE_TRACK,
+    MUTE_TRACK,
+    UNMUTE_TRACK,
+    SOLO_TRACK,
+    UNSOLO_TRACK,
     SET_TRACK_GAIN,
     SET_TRACK_PAN,
 } from "../actions/types";
@@ -26,19 +30,30 @@ const analyser = (state = null, action) => {
 const tracks = (state = {}, action) => {
     switch (action.type) {
         case PLAY_TRACK:
-            return {
-                ...state,
-                [action.id]: {
-                    ...state[action.id],
-                    playing: true
-                }
-            };
         case PAUSE_TRACK:
             return {
                 ...state,
                 [action.id]: {
                     ...state[action.id],
-                    playing: false
+                    playing: action.type == PLAY_TRACK
+                }
+            };
+        case MUTE_TRACK:
+        case UNMUTE_TRACK:
+            return {
+                ...state,
+                [action.id]: {
+                    ...state[action.id],
+                    muted: action.type == MUTE_TRACK
+                }
+            };
+        case SOLO_TRACK:
+        case UNSOLO_TRACK:
+            return {
+                ...state,
+                [action.id]: {
+                    ...state[action.id],
+                    soloed: action.type == SOLO_TRACK
                 }
             };
         case SET_TRACK_GAIN:

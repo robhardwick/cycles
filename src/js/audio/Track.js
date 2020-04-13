@@ -1,3 +1,5 @@
+const RAMP_OFFSET = 0.1; // 100ms
+
 export class Track {
     constructor(data) {
         this.audio = new Audio();
@@ -18,11 +20,15 @@ export class Track {
         this.panNode = ctx.createPanner();
         this.panNode.panningModel = "equalpower";
 
+        this.muteNode = ctx.createGain();
+        this.muteNode.gain.value = 1;
+
         this.audioNode
             .connect(this.gainNode)
-            .connect(this.panNode);
+            .connect(this.panNode)
+            .connect(this.muteNode);
 
-        return this.panNode;
+        return this.muteNode;
     }
 
     play() {
@@ -33,11 +39,28 @@ export class Track {
         this.audio.pause();
     }
 
+    mute() {
+        this.muteNode.gain.linearRampToValueAtTime(
+            0,
+            this.ctx.currentTime + RAMP_OFFSET
+        );
+    }
+
+    unmute() {
+        this.muteNode.gain.linearRampToValueAtTime(
+            1.0,
+            this.ctx.currentTime + RAMP_OFFSET
+        );
+    }
+
     gain(value) {
-        this.gainNode.gain.setValueAtTime(value, this.ctx.currentTime);
+        this.muteNode.gain.linearRampToValueAtTime(
+            value,
+            this.ctx.currentTime + RAMP_OFFSET
+        );
     }
 
     pan(value) {
-        this.panNode.setPosition(value, 0, 1 - Math.abs(value));
+        this.panNode.setPosition(value, 0, 1.0 - Math.abs(value));
     }
 }

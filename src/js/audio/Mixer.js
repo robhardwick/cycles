@@ -37,4 +37,15 @@ export class Mixer {
     setTrackPan(id, value) {
         this.tracks[id].pan(value);
     }
+
+    muteTracks(state) {
+        let soloing = state.some(track => track.soloed);
+        for (const track of state) {
+            if ((soloing && track.soloed) || (!soloing && !track.muted)) {
+                this.tracks[track.id].unmute();
+            } else {
+                this.tracks[track.id].mute();
+            }
+        }
+    }
 }

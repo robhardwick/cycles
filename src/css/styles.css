@@ -89,6 +89,27 @@ button:active:not(:disabled) {
     margin: 10px 0;
 }
 
+.track-controls .muting {
+    text-align: center;
+}
+
+.track-controls .muting button {
+    width: 25px;
+    border: 1px solid black;
+    margin: 5px;
+}
+
+.track-controls .muting button.active {
+    background: black;
+    color: white;
+}
+
+.track-controls .muting button:disabled {
+    cursor: default;
+    background: transparent;
+    color: darkgray;
+}
+
 .track-controls .play {
     text-align: center;
 }

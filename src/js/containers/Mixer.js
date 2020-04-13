@@ -7,6 +7,7 @@ import { Track } from "./Track";
 export const Mixer = () => {
     const analyser = useSelector(state => state.analyser);
     const tracks = useSelector(state => state.tracks);
+    const soloing = Object.keys(tracks).some(id => tracks[id].soloed);
     return (
         <>
             <div className="visualiser">
@@ -18,7 +19,10 @@ export const Mixer = () => {
                 {Object.keys(tracks)
                     .sort()
                     .map(function (id) {
-                        return (<Track key={id} id={id} track={tracks[id]} />)
+                        return (<Track key={id}
+                            soloing={soloing}
+                            id={id}
+                            track={tracks[id]} />)
                     })}
             </div>
         </>

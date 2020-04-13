@@ -15,6 +15,8 @@ import sean from "./media/audio/Modern Nature & Friends - Cycles - 14 Sean Thomp
 
 const trackDefaults = {
     playing: true,
+    muted: false,
+    soloed: false,
     gain: 1,
     pan: 0,
 }
