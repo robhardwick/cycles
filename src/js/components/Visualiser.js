@@ -1,55 +1,73 @@
-import React, { Component } from "react";
+import React, { useRef, useEffect } from "react";
 
-export class Visualiser extends Component {
-    constructor(props) {
-        super(props)
-        this.props.analyser.fftSize = 1024;
-        this.bufferLength = this.props.analyser.frequencyBinCount;
-        this.dataArray = new Uint8Array(this.bufferLength);
-        this.sliceWidth = this.props.width / this.bufferLength;
-    }
+const getPixelRatio = context => {
+    var backingStore =
+        context.backingStorePixelRatio ||
+        context.webkitBackingStorePixelRatio ||
+        context.mozBackingStorePixelRatio ||
+        context.msBackingStorePixelRatio ||
+        context.oBackingStorePixelRatio ||
+        context.backingStorePixelRatio ||
+        1;
+    return (window.devicePixelRatio || 1) / backingStore;
+};
 
-    componentDidMount() {
-        if (!this._frameId) {
-            this._frameId = window.requestAnimationFrame(this.paint);
-        }
-    }
+export const Visualiser = ({ analyser, width, height }) => {
+    let ref = useRef();
 
-    componentWillUnmount() {
-        window.cancelAnimationFrame(this._frameId);
-    }
+    analyser.fftSize = 256;
+    const bufferLength = analyser.frequencyBinCount;
+    let dataArray = new Uint8Array(bufferLength);
 
-    paint = () => {
-        const context = this.refs.canvas.getContext('2d');
-        context.clearRect(0, 0, this.props.width, this.props.height);
+    useEffect(() => {
+        let canvas = ref.current;
+        let context = canvas.getContext('2d');
+        let ratio = getPixelRatio(context);
 
-        context.lineWidth = 2;
+        const trueWidth = width * ratio;
+        const trueHeight = height * ratio;
+        const sliceWidth = trueWidth / bufferLength;
+
+        canvas.width = trueWidth;
+        canvas.height = trueHeight;
+
+        context.lineWidth = 3;
         context.strokeStyle = 'rgb(0, 0, 0)';
-        context.beginPath();
 
-        this.props.analyser.getByteTimeDomainData(this.dataArray);
+        let requestId;
+        const render = (timestamp) => {
+            analyser.getByteTimeDomainData(dataArray);
 
-        for (let i = 0, x = 0; i < this.bufferLength; i++, x += this.sliceWidth) {
-            const y = (this.dataArray[i] / 128.0) * (this.props.height / 2);
+            context.clearRect(0, 0, trueWidth, trueHeight);
+            context.beginPath();
 
-            if (i === 0) {
-                context.moveTo(x, y);
-            } else {
-                context.lineTo(x, y);
+            for (let i = 0, x = 0; i < bufferLength; i++, x += sliceWidth) {
+                const y = (dataArray[i] / 255) * trueHeight;
+
+                if (i === 0) {
+                    context.moveTo(x, y);
+                } else {
+                    context.lineTo(x, y);
+                }
             }
-        }
 
-        context.lineTo(this.props.width, this.props.height / 2);
-        context.stroke();
+            context.stroke();
 
-        this._frameId = window.requestAnimationFrame(this.paint);
-    }
+            requestId = requestAnimationFrame(render)
+        };
 
-    render() {
-        return (
-            <canvas ref="canvas"
-                width={this.props.width}
-                height={this.props.height} />
-        );
-    }
-}
+        render();
+
+        return () => {
+            cancelAnimationFrame(requestId);
+        };
+    });
+
+    return (
+        <canvas ref={ref}
+            style={{
+                width: `${width}px`,
+                height: `${height}px`
+            }} />
+    );
+};

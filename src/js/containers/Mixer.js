@@ -13,7 +13,7 @@ export const Mixer = () => {
         <>
             <div className="visualiser">
                 <Visualiser analyser={analyser}
-                    width={window.innerWidth - 60}
+                    width={window.innerWidth - 40}
                     height={window.innerHeight - 360} />
             </div>
             <div className="tracks">
