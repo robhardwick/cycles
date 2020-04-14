@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 
 import { Visualiser } from "../components/Visualiser";
+import { Donate } from "../components/Donate";
 import { Track } from "./Track";
 
 export const Mixer = () => {
@@ -25,6 +26,7 @@ export const Mixer = () => {
                             track={tracks[id]} />)
                     })}
             </div>
+            <Donate />
         </>
     );
 };
