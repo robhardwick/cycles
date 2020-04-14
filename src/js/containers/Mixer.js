@@ -13,8 +13,8 @@ export const Mixer = () => {
         <>
             <div className="visualiser">
                 <Visualiser analyser={analyser}
-                    width={window.innerWidth - 40}
-                    height={window.innerHeight - 360} />
+                    offsetX={30}
+                    offsetY={380} />
             </div>
             <div className="tracks">
                 {Object.keys(tracks)

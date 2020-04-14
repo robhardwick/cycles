@@ -5,13 +5,6 @@ import { faSpinner, faPlayCircle, faPauseCircle } from "@fortawesome/free-solid-
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 
-const sliderTrackStyle = {
-    backgroundColor: "black"
-};
-const sliderHandleStyle = {
-    border: "2px solid black"
-};
-
 export const Track = ({
     play,
     pause,
@@ -34,12 +27,7 @@ export const Track = ({
                         min={0}
                         max={2}
                         step={0.05}
-                        vertical={true}
-                        trackStyle={sliderTrackStyle}
-                        handleStyle={sliderHandleStyle}
-                        style={{
-                            height: "100px",
-                        }} />
+                        vertical={true} />
                 </div>
                 <div className="pan">
                     <Slider value={track.pan}
@@ -47,12 +35,7 @@ export const Track = ({
                         disabled={track.loading}
                         min={-1}
                         max={1}
-                        step={0.05}
-                        trackStyle={sliderTrackStyle}
-                        handleStyle={sliderHandleStyle}
-                        style={{
-                            width: "80%",
-                        }} />
+                        step={0.05} />
                 </div>
                 <div className="muting">
                     <button className={track.muted ? 'active' : ''}

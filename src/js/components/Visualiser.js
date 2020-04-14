@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useState, useLayoutEffect, useRef, useEffect } from "react";
 
 const getPixelRatio = context => {
     var backingStore =
@@ -12,7 +12,21 @@ const getPixelRatio = context => {
     return (window.devicePixelRatio || 1) / backingStore;
 };
 
-export const Visualiser = ({ analyser, width, height }) => {
+const useWindowSize = (offsetX, offsetY) => {
+    const [size, setSize] = useState([0, 0]);
+    useLayoutEffect(() => {
+        const updateSize = () => {
+            setSize([window.innerWidth - offsetX, window.innerHeight - offsetY]);
+        };
+        window.addEventListener('resize', updateSize);
+        updateSize();
+        return () => window.removeEventListener('resize', updateSize);
+    }, []);
+    return size;
+};
+
+export const Visualiser = ({ analyser, offsetX, offsetY }) => {
+    const [width, height] = useWindowSize(offsetX, offsetY);
     let ref = useRef();
 
     analyser.fftSize = 256;

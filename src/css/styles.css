@@ -83,14 +83,31 @@ button:active:not(:disabled) {
     user-select: none;
 }
 
+.track-controls .rc-slider-disabled {
+    background-color: transparent;
+}
+
+.track-controls .rc-slider-track {
+    background-color: black;
+}
+
+.track-controls .rc-slider-handle {
+    border: 2px solid black;
+}
+
 .track-controls .gain .rc-slider {
     margin: 0 auto;
+    height: 100px;
 }
 
 .track-controls .pan {
     display: flex;
     justify-content: center;
     margin: 10px 0;
+}
+
+.track-controls .pan .rc-slider {
+    width: 80%;
 }
 
 .track-controls .muting {
@@ -129,4 +146,50 @@ button:active:not(:disabled) {
 .donate a {
     color: black;
     padding: 5px;
+}
+
+@media screen and (max-width: 1000px) {
+    .tracks {
+        flex-flow: row wrap;
+    }
+    .track {
+        width: 50%;
+    }
+    .track:before {
+        padding-top: 20%;
+    }
+    .track-controls h1 {
+        font-size: 4em;
+        margin-bottom: 20px;
+    }
+    .track-controls .rc-slider-handle {
+        width: 40px;
+        height: 40px;
+        margin-top: -18px;
+    }
+    .track-controls .rc-slider-vertical .rc-slider-handle {
+        margin-left: -18px;
+    }
+    .track-controls .gain,
+    .track-controls .pan {
+        margin-bottom: 30px;
+    }
+    .track-controls .gain .rc-slider {
+        height: 200px;
+    }
+    .track-controls .muting {
+        margin: 30px 0;
+    }
+    .track-controls .muting button {
+        width: 100px;
+        font-size: 2em;
+    }
+    .track-controls .loading,
+    .track-controls .play {
+        margin-bottom: 30px;
+    }
+    .track-controls .loading button,
+    .track-controls .play button {
+        font-size: 2em;
+    }
 }
