@@ -13,7 +13,7 @@ import { setAnalyser } from "../actions";
 import { Mixer } from "./Mixer";
 
 export const audioMiddleware = ({ getState, dispatch }) => {
-    const mixer = new Mixer(getState().tracks);
+    const mixer = new Mixer(dispatch, getState().tracks);
 
     return next => action => {
         next(action);

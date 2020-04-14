@@ -1,12 +1,17 @@
+import { loadedTrack } from "../actions";
+
 const RAMP_OFFSET = 0.1; // 100ms
 
 export class Track {
-    constructor(data) {
+    constructor(dispatch, id, data) {
         this.audio = new Audio();
         this.audio.preload = "none";
         this.audio.loop = true;
         this.audio.crossOrigin = "anonymous";
         this.audio.src = data.file;
+        this.audio.addEventListener("canplay", () => {
+            dispatch(loadedTrack(id));
+        })
     }
 
     init(ctx) {

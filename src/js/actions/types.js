@@ -1,5 +1,6 @@
 export const ENABLE = "ENABLE";
 export const SET_ANALYSER = "SET_ANALYSER";
+export const LOADED_TRACK = "LOADED_TRACK";
 export const PLAY_TRACK = "PLAY_TRACK";
 export const PAUSE_TRACK = "PAUSE_TRACK";
 export const MUTE_TRACK = "MUTE_TRACK";

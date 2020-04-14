@@ -28,6 +28,7 @@ export const Track = ({
                 <div className="gain">
                     <Slider value={track.gain}
                         onChange={setGain}
+                        disabled={track.loading}
                         min={0}
                         max={2}
                         step={0.05}
@@ -41,6 +42,7 @@ export const Track = ({
                 <div className="pan">
                     <Slider value={track.pan}
                         onChange={setPan}
+                        disabled={track.loading}
                         min={-1}
                         max={1}
                         step={0.05}
@@ -52,20 +54,27 @@ export const Track = ({
                 </div>
                 <div className="muting">
                     <button className={track.muted ? 'active' : ''}
-                        disabled={soloing}
+                        disabled={soloing || track.loading}
                         onClick={track.muted ? unmute : mute}>
                         M
                     </button>
                     <button className={track.soloed ? 'active' : ''}
+                        disabled={track.loading}
                         onClick={track.soloed ? unsolo : solo}>
                         S
                     </button>
                 </div>
-                <div className="play">
-                    <button onClick={track.playing ? pause : play} key={track.playing}>
-                        <i className={`fas fa-3x fa-${track.playing ? "pause" : "play"}-circle`} />
-                    </button>
-                </div>
+                {track.loading ?
+                    <div className="loading" key={track.loading}>
+                        <i className="fas fa-2x fa-spinner fa-pulse"></i>
+                    </div>
+                    :
+                    <div className="play">
+                        <button onClick={track.playing ? pause : play} key={track.playing}>
+                            <i className={`fas fa-3x fa-${track.playing ? "pause" : "play"}-circle`} />
+                        </button>
+                    </div>
+                }
             </div>
         </div >
     );

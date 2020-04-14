@@ -1,6 +1,7 @@
 import {
     ENABLE,
     SET_ANALYSER,
+    LOADED_TRACK,
     PLAY_TRACK,
     PAUSE_TRACK,
     MUTE_TRACK,
@@ -18,6 +19,11 @@ export const enable = () => ({
 export const setAnalyser = analyser => ({
     type: SET_ANALYSER,
     analyser
+});
+
+export const loadedTrack = id => ({
+    type: LOADED_TRACK,
+    id
 });
 
 export const playTrack = id => ({

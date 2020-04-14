@@ -3,6 +3,7 @@ import { combineReducers } from "redux";
 import {
     ENABLE,
     SET_ANALYSER,
+    LOADED_TRACK,
     PLAY_TRACK,
     PAUSE_TRACK,
     MUTE_TRACK,
@@ -29,6 +30,14 @@ const analyser = (state = null, action) => {
 
 const tracks = (state = {}, action) => {
     switch (action.type) {
+        case LOADED_TRACK:
+            return {
+                ...state,
+                [action.id]: {
+                    ...state[action.id],
+                    loading: false
+                }
+            };
         case PLAY_TRACK:
         case PAUSE_TRACK:
             return {

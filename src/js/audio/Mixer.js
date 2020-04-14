@@ -1,11 +1,11 @@
 import { Track } from "./Track";
 
 export class Mixer {
-    constructor(tracks) {
+    constructor(dispatch, tracks) {
         this.tracks = Object.assign(
             {},
             ...Object.keys(tracks)
-                .map(id => ({ [id]: new Track(tracks[id]) }))
+                .map(id => ({ [id]: new Track(dispatch, id, tracks[id]) }))
         );
     }
 

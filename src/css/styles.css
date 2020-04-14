@@ -28,6 +28,8 @@ button {
     border: none;
     background: none;
     cursor: pointer;
+    margin: 0;
+    padding: 0;
 }
 
 button:active:not(:disabled) {
@@ -97,6 +99,7 @@ button:active:not(:disabled) {
     width: 25px;
     border: 1px solid black;
     margin: 5px;
+    padding: 2px 4px;
 }
 
 .track-controls .muting button.active {
@@ -110,6 +113,8 @@ button:active:not(:disabled) {
     color: darkgray;
 }
 
+.track-controls .loading,
 .track-controls .play {
+    margin-top: 5px;
     text-align: center;
 }

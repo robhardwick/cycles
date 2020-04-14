@@ -14,6 +14,7 @@ import matthews from "./media/audio/Modern Nature & Friends - Cycles - 13 Matthe
 import sean from "./media/audio/Modern Nature & Friends - Cycles - 14 Sean Thompson (acoustic guitar).mp3";
 
 const trackDefaults = {
+    loading: true,
     playing: true,
     muted: false,
     soloed: false,
