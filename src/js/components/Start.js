@@ -1,7 +1,9 @@
 import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlayCircle } from "@fortawesome/free-solid-svg-icons";
 
 export const Start = ({ onClick }) => (
     <button className="start" onClick={onClick}>
-        <i className="fas fa-10x fa-play-circle" />
+        <FontAwesomeIcon icon={faPlayCircle} size="10x" />
     </button>
 );

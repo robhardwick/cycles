@@ -6,8 +6,6 @@ import { render } from "react-dom";
 import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 
-import "@fortawesome/fontawesome-free/js/fontawesome";
-import "@fortawesome/fontawesome-free/js/solid";
 import "./css/styles.css";
 
 import { audioMiddleware } from "./js/audio";

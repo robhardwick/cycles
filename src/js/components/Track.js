@@ -1,4 +1,6 @@
-import React, { Component } from "react";
+import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSpinner, faPlayCircle, faPauseCircle } from "@fortawesome/free-solid-svg-icons";
 
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
@@ -65,13 +67,13 @@ export const Track = ({
                     </button>
                 </div>
                 {track.loading ?
-                    <div className="loading" key={track.loading}>
-                        <i className="fas fa-2x fa-spinner fa-pulse"></i>
+                    <div className="loading">
+                        <FontAwesomeIcon icon={faSpinner} size="2x" pulse />
                     </div>
                     :
                     <div className="play">
-                        <button onClick={track.playing ? pause : play} key={track.playing}>
-                            <i className={`fas fa-3x fa-${track.playing ? "pause" : "play"}-circle`} />
+                        <button onClick={track.playing ? pause : play}>
+                            <FontAwesomeIcon icon={track.playing ? faPauseCircle : faPlayCircle} size="3x" />
                         </button>
                     </div>
                 }
