@@ -1,17 +1,31 @@
-import jack from "./media/audio/Modern Nature & Friends - Cycles - 01 Jack Cooper (electric guitar).mp3";
-import jim from "./media/audio/Modern Nature & Friends - Cycles - 02 Jim Wallis (dulcimer and drums).mp3";
-import will from "./media/audio/Modern Nature & Friends - Cycles - 03 Will Young (clarinet).mp3";
-import karen from "./media/audio/Modern Nature & Friends - Cycles - 04 Karen Waltuch (viola).mp3";
-import andrew from "./media/audio/Modern Nature & Friends - Cycles - 05 Andrew Collberg (bass).mp3";
-import izzy from "./media/audio/Modern Nature & Friends - Cycles - 06 Izzy Johnson (electric guitar).mp3";
-import marcus from "./media/audio/Modern Nature & Friends - Cycles - 07 Marcus Hamblett (cornet and vibraphone).mp3";
-import ryley from "./media/audio/Modern Nature & Friends - Cycles - 08 Ryley Walker (reverb electric guitar).mp3";
-import kevin from "./media/audio/Modern Nature & Friends - Cycles - 09 Kevin Donahue (drums).mp3";
-import jen from "./media/audio/Modern Nature & Friends - Cycles - 10 Jen Powers (dulcimer).mp3";
-import matthewr from "./media/audio/Modern Nature & Friends - Cycles - 11 Matthew Rolin (acoustic guitar and chimes).mp3";
-import jeff from "./media/audio/Modern Nature & Friends - Cycles - 12 Jeff Tobias (trombone).mp3";
-import matthews from "./media/audio/Modern Nature & Friends - Cycles - 13 Matthew Simms (synth).mp3";
-import sean from "./media/audio/Modern Nature & Friends - Cycles - 14 Sean Thompson (acoustic guitar).mp3";
+import jack_webm from "./media/audio/Modern Nature & Friends - Cycles - 01 Jack Cooper (electric guitar).webm";
+import jack_mp3 from "./media/audio/Modern Nature & Friends - Cycles - 01 Jack Cooper (electric guitar).mp3";
+import jim_webm from "./media/audio/Modern Nature & Friends - Cycles - 02 Jim Wallis (dulcimer and drums).webm";
+import jim_mp3 from "./media/audio/Modern Nature & Friends - Cycles - 02 Jim Wallis (dulcimer and drums).mp3";
+import will_webm from "./media/audio/Modern Nature & Friends - Cycles - 03 Will Young (clarinet).webm";
+import will_mp3 from "./media/audio/Modern Nature & Friends - Cycles - 03 Will Young (clarinet).mp3";
+import karen_webm from "./media/audio/Modern Nature & Friends - Cycles - 04 Karen Waltuch (viola).webm";
+import karen_mp3 from "./media/audio/Modern Nature & Friends - Cycles - 04 Karen Waltuch (viola).mp3";
+import andrew_webm from "./media/audio/Modern Nature & Friends - Cycles - 05 Andrew Collberg (bass).webm";
+import andrew_mp3 from "./media/audio/Modern Nature & Friends - Cycles - 05 Andrew Collberg (bass).mp3";
+import izzy_webm from "./media/audio/Modern Nature & Friends - Cycles - 06 Izzy Johnson (electric guitar).webm";
+import izzy_mp3 from "./media/audio/Modern Nature & Friends - Cycles - 06 Izzy Johnson (electric guitar).mp3";
+import marcus_webm from "./media/audio/Modern Nature & Friends - Cycles - 07 Marcus Hamblett (cornet and vibraphone).webm";
+import marcus_mp3 from "./media/audio/Modern Nature & Friends - Cycles - 07 Marcus Hamblett (cornet and vibraphone).mp3";
+import ryley_webm from "./media/audio/Modern Nature & Friends - Cycles - 08 Ryley Walker (reverb electric guitar).webm";
+import ryley_mp3 from "./media/audio/Modern Nature & Friends - Cycles - 08 Ryley Walker (reverb electric guitar).mp3";
+import kevin_webm from "./media/audio/Modern Nature & Friends - Cycles - 09 Kevin Donahue (drums).webm";
+import kevin_mp3 from "./media/audio/Modern Nature & Friends - Cycles - 09 Kevin Donahue (drums).mp3";
+import jen_webm from "./media/audio/Modern Nature & Friends - Cycles - 10 Jen Powers (dulcimer).webm";
+import jen_mp3 from "./media/audio/Modern Nature & Friends - Cycles - 10 Jen Powers (dulcimer).mp3";
+import matthewr_webm from "./media/audio/Modern Nature & Friends - Cycles - 11 Matthew Rolin (acoustic guitar and chimes).webm";
+import matthewr_mp3 from "./media/audio/Modern Nature & Friends - Cycles - 11 Matthew Rolin (acoustic guitar and chimes).mp3";
+import jeff_webm from "./media/audio/Modern Nature & Friends - Cycles - 12 Jeff Tobias (trombone).webm";
+import jeff_mp3 from "./media/audio/Modern Nature & Friends - Cycles - 12 Jeff Tobias (trombone).mp3";
+import matthews_webm from "./media/audio/Modern Nature & Friends - Cycles - 13 Matthew Simms (synth).webm";
+import matthews_mp3 from "./media/audio/Modern Nature & Friends - Cycles - 13 Matthew Simms (synth).mp3";
+import sean_webm from "./media/audio/Modern Nature & Friends - Cycles - 14 Sean Thompson (acoustic guitar).webm";
+import sean_mp3 from "./media/audio/Modern Nature & Friends - Cycles - 14 Sean Thompson (acoustic guitar).mp3";
 
 const trackDefaults = {
     loading: true,
@@ -26,71 +40,113 @@ export const tracks = {
     jack: {
         ...trackDefaults,
         title: "Jack",
-        file: jack,
+        files: {
+            webm: jack_webm,
+            mp3: jack_mp3,
+        },
     },
     jim: {
         ...trackDefaults,
         title: "Jim",
-        file: jim,
+        files: {
+            webm: jim_webm,
+            mp3: jim_mp3,
+        },
     },
     will: {
         ...trackDefaults,
         title: "Will",
-        file: will,
+        files: {
+            webm: will_webm,
+            mp3: will_mp3,
+        },
     },
     karen: {
         ...trackDefaults,
         title: "Karen",
-        file: karen,
+        files: {
+            webm: karen_webm,
+            mp3: karen_mp3,
+        },
     },
     andrew: {
         ...trackDefaults,
         title: "Andrew",
-        file: andrew,
+        files: {
+            webm: andrew_webm,
+            mp3: andrew_mp3,
+        },
     },
     izzy: {
         ...trackDefaults,
         title: "Izzy",
-        file: izzy,
+        files: {
+            webm: izzy_webm,
+            mp3: izzy_mp3,
+        },
     },
     marcus: {
         ...trackDefaults,
         title: "Marcus",
-        file: marcus,
+        files: {
+            webm: marcus_webm,
+            mp3: marcus_mp3,
+        },
     },
     ryley: {
         ...trackDefaults,
         title: "Ryley",
-        file: ryley,
+        files: {
+            webm: ryley_webm,
+            mp3: ryley_mp3,
+        },
     },
     kevin: {
         ...trackDefaults,
         title: "Kevin",
-        file: kevin,
+        files: {
+            webm: kevin_webm,
+            mp3: kevin_mp3,
+        },
     },
     jen: {
         ...trackDefaults,
         title: "Jen",
-        file: jen,
+        files: {
+            webm: jen_webm,
+            mp3: jen_mp3,
+        },
     },
     matthewr: {
         ...trackDefaults,
         title: "Matthew R.",
-        file: matthewr,
+        files: {
+            webm: matthewr_webm,
+            mp3: matthewr_mp3,
+        },
     },
     jeff: {
         ...trackDefaults,
         title: "Jeff",
-        file: jeff,
+        files: {
+            webm: jeff_webm,
+            mp3: jeff_mp3,
+        },
     },
     matthews: {
         ...trackDefaults,
         title: "Matthew S.",
-        file: matthews,
+        files: {
+            webm: matthews_webm,
+            mp3: matthews_mp3,
+        },
     },
     sean: {
         ...trackDefaults,
         title: "Sean",
-        file: sean,
+        files: {
+            webm: sean_webm,
+            mp3: sean_mp3,
+        },
     }
 };

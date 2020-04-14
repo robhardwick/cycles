@@ -18,7 +18,7 @@ module.exports = {
             },
         },
         {
-            test: /\.(jpg|mp3)$/,
+            test: /\.(jpg|mp3|webm)$/,
             use: 'file-loader'
         },
         {

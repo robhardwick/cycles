@@ -28,6 +28,7 @@
     "webpack-dev-server": "^3.10.3"
   },
   "dependencies": {
+    "core-js": "^3.6.5",
     "rc-slider": "^9.2.4",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",

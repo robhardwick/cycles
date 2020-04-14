@@ -8,7 +8,11 @@ export class Track {
         this.audio.preload = "none";
         this.audio.loop = true;
         this.audio.crossOrigin = "anonymous";
-        this.audio.src = data.file;
+        if (this.audio.canPlayType('audio/webm; codecs="opus"')) {
+            this.audio.src = data.files.webm;
+        } else {
+            this.audio.src = data.files.mp3;
+        }
         this.audio.addEventListener("canplay", () => {
             dispatch(loadedTrack(id));
         })
@@ -36,12 +40,16 @@ export class Track {
         return this.muteNode;
     }
 
-    play() {
-        this.audio.play();
+    async play() {
+        try {
+            await this.audio.play();
+        } catch (err) { }
     }
 
-    pause() {
-        this.audio.pause();
+    async pause() {
+        try {
+            this.audio.pause();
+        } catch (err) { }
     }
 
     mute() {
