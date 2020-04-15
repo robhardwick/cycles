@@ -1,8 +1,17 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
+const TerserJSPlugin = require('terser-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
-module.exports = {
+const CDNs = ["/cycles"];
+let resources = new Proxy({}, {
+    get: (target, name) => name in target ? target[name] : 0
+});
+
+module.exports = (env, argv) => ({
     output: {
-        publicPath: "/cycles/"
+        publicPath: "/cycles/",
+        filename: argv.mode === "production" ? '[name].[contenthash].js' : '[name].js',
     },
     devServer: {
         publicPath: "/cycles/",
@@ -19,13 +28,22 @@ module.exports = {
         },
         {
             test: /\.(jpg|mp3|webm)$/,
-            use: 'file-loader'
+            loader: "file-loader",
+            options: {
+                publicPath: (url, resourcePath, context) => {
+                    if (argv.mode === "production") {
+                        const index = resources[resourcePath.split('.').pop()]++;
+                        return `${CDNs[index % CDNs.length]}/${url}`;
+                    }
+                    return url;
+                }
+            }
         },
         {
             test: /\.css$/,
             use: [
-                { loader: 'style-loader', options: { injectType: 'styleTag' } },
-                'css-loader'
+                MiniCssExtractPlugin.loader,
+                "css-loader"
             ]
         },
 
@@ -37,10 +55,28 @@ module.exports = {
         }
         ]
     },
+    optimization: {
+        minimizer: [
+            new TerserJSPlugin({
+                terserOptions: {
+                    mangle: true,
+                    output: {
+                        comments: false,
+                    },
+                },
+                extractComments: false,
+            }),
+            new OptimizeCSSAssetsPlugin()
+        ],
+    },
     plugins: [
         new HtmlWebPackPlugin({
             template: "./src/index.html",
             filename: "./index.html"
-        })
+        }),
+        new MiniCssExtractPlugin({
+            filename: argv.mode === "production" ? '[name].[hash].css' : '[name].css',
+            chunkFilename: argv.mode === "production" ? '[id].[hash].css' : '[id].css',
+        }),
     ]
-};
+});
