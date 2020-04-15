@@ -19,7 +19,7 @@ export const audioMiddleware = ({ getState, dispatch }) => {
         next(action);
         switch (action.type) {
             case ENABLE:
-                mixer.start();
+                mixer.start(getState().tracks);
                 dispatch(setAnalyser(mixer.analyserNode));
                 break;
             case PLAY_TRACK:

@@ -9,7 +9,7 @@ export class Mixer {
         );
     }
 
-    start() {
+    start(state) {
         let AudioContext = window.AudioContext || window.webkitAudioContext;
         let ctx = new AudioContext();
 
@@ -18,7 +18,11 @@ export class Mixer {
 
         for (const id in this.tracks) {
             this.tracks[id].init(ctx).connect(this.analyserNode);
-            this.tracks[id].play();
+            if (state[id].playing) {
+                this.tracks[id].play();
+            } else {
+                this.tracks[id].load();
+            }
         }
     }
 

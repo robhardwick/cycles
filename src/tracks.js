@@ -29,14 +29,14 @@ import sean_mp3 from "./media/audio/Modern Nature & Friends - Cycles - 14 Sean T
 
 const trackDefaults = {
     loading: true,
-    playing: true,
+    playing: false,
     muted: false,
     soloed: false,
     gain: 1,
     pan: 0,
 }
 
-export const tracks = {
+const tracks = {
     jack: {
         ...trackDefaults,
         title: "Jack",
@@ -150,3 +150,11 @@ export const tracks = {
         },
     }
 };
+
+// Randomly select half of the tracks to autoplay
+let ids = Object.keys(tracks);
+for (const id of ids.sort(() => 0.5 - Math.random()).slice(0, ids.length / 2)) {
+    tracks[id].playing = true;
+}
+
+export { tracks };
