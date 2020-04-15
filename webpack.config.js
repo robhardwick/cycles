@@ -3,7 +3,11 @@ const TerserJSPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
-const CDNs = ["/cycles"];
+const CDNs = [
+    "http://cycles1.willkommenrecords.co.uk",
+    "http://cycles2.willkommenrecords.co.uk",
+    "http://cycles3.willkommenrecords.co.uk",
+];
 let resources = new Proxy({}, {
     get: (target, name) => name in target ? target[name] : 0
 });
