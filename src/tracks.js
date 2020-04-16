@@ -152,8 +152,14 @@ const tracks = {
 };
 
 // Randomly select half of the tracks to autoplay
-let ids = Object.keys(tracks);
-for (const id of ids.sort(() => 0.5 - Math.random()).slice(0, ids.length / 2)) {
+const EXCLUDE = ["ryley"];
+const IDs = Object.keys(tracks);
+const NUMBER = IDs.length / 2;
+const autoPlay = IDs.filter(id => !(EXCLUDE.includes(id)))
+    .sort(() => 0.5 - Math.random())
+    .slice(0, NUMBER);
+
+for (const id of autoPlay) {
     tracks[id].playing = true;
 }
 
