@@ -92,6 +92,7 @@ button:active:not(:disabled) {
     margin: 5px 0;
     text-align: center;
     font-size: 12px;
+    height: 28px;
     -webkit-user-select: none;      
     -moz-user-select: none;
     -ms-user-select: none;
@@ -163,7 +164,7 @@ button:active:not(:disabled) {
     padding: 5px;
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1280px) {
     .tracks {
         flex-flow: row wrap;
     }
@@ -175,6 +176,7 @@ button:active:not(:disabled) {
     }
     .track-controls h1 {
         font-size: 4em;
+        height: 2em;
         margin-bottom: 20px;
     }
     .track-controls .rc-slider-handle {

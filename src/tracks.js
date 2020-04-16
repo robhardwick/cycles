@@ -26,6 +26,16 @@ import matthews_webm from "./media/audio/Modern Nature & Friends - Cycles - 13 M
 import matthews_mp3 from "./media/audio/Modern Nature & Friends - Cycles - 13 Matthew Simms (synth).mp3";
 import sean_webm from "./media/audio/Modern Nature & Friends - Cycles - 14 Sean Thompson (acoustic guitar).webm";
 import sean_mp3 from "./media/audio/Modern Nature & Friends - Cycles - 14 Sean Thompson (acoustic guitar).mp3";
+import craven_webm from "./media/audio/Modern Nature & Friends - Cycles - 18 Craven Faults (Farfisa organ through modular synth with Revox tape echo).webm";
+import craven_mp3 from "./media/audio/Modern Nature & Friends - Cycles - 18 Craven Faults (Farfisa organ through modular synth with Revox tape echo).mp3";
+import hollow_webm from "./media/audio/Modern Nature & Friends - Cycles - 19 Hollow Hand (Prophet 5 synth).webm";
+import hollow_mp3 from "./media/audio/Modern Nature & Friends - Cycles - 19 Hollow Hand (Prophet 5 synth).mp3";
+import rich_webm from "./media/audio/Modern Nature & Friends - Cycles - 20 Rich Ruth (synths).webm";
+import rich_mp3 from "./media/audio/Modern Nature & Friends - Cycles - 20 Rich Ruth (synths).mp3";
+import linus_webm from "./media/audio/Modern Nature & Friends - Cycles - 21 Linus Fenton (bass).webm";
+import linus_mp3 from "./media/audio/Modern Nature & Friends - Cycles - 21 Linus Fenton (bass).mp3";
+import zebedee_webm from "./media/audio/Modern Nature & Friends - Cycles - 22 Zebedee C. Budworth (dulcimer).webm";
+import zebedee_mp3 from "./media/audio/Modern Nature & Friends - Cycles - 22 Zebedee C. Budworth (dulcimer).mp3";
 
 const trackDefaults = {
     loading: true,
@@ -148,13 +158,53 @@ const tracks = {
             webm: sean_webm,
             mp3: sean_mp3,
         },
-    }
+    },
+    craven: {
+        ...trackDefaults,
+        title: "Craven Faults",
+        files: {
+            webm: craven_webm,
+            mp3: craven_mp3,
+        },
+    },
+    hollow: {
+        ...trackDefaults,
+        title: "Hollow Hand",
+        files: {
+            webm: hollow_webm,
+            mp3: hollow_mp3,
+        },
+    },
+    rich: {
+        ...trackDefaults,
+        title: "Rich",
+        files: {
+            webm: rich_webm,
+            mp3: rich_mp3,
+        },
+    },
+    linus: {
+        ...trackDefaults,
+        title: "Linus",
+        files: {
+            webm: linus_webm,
+            mp3: linus_mp3,
+        },
+    },
+    zebedee: {
+        ...trackDefaults,
+        title: "Zebedee",
+        files: {
+            webm: zebedee_webm,
+            mp3: zebedee_mp3,
+        },
+    },
 };
 
 // Randomly select half of the tracks to autoplay
 const EXCLUDE = ["ryley"];
 const IDs = Object.keys(tracks);
-const NUMBER = IDs.length / 2;
+const NUMBER = Math.floor(IDs.length / 2);
 const autoPlay = IDs.filter(id => !(EXCLUDE.includes(id)))
     .sort(() => 0.5 - Math.random())
     .slice(0, NUMBER);
