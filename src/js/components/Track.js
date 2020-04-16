@@ -23,7 +23,7 @@ export const Track = ({
                 <div className="gain">
                     <Slider value={track.gain}
                         onChange={setGain}
-                        disabled={track.loading}
+                        disabled={track.loading || !track.playing}
                         min={0}
                         max={2}
                         step={0.05}
@@ -32,19 +32,21 @@ export const Track = ({
                 <div className="pan">
                     <Slider value={track.pan}
                         onChange={setPan}
-                        disabled={track.loading}
+                        disabled={track.loading || !track.playing}
                         min={-1}
                         max={1}
                         step={0.05} />
                 </div>
                 <div className="muting">
-                    <button className={track.muted ? 'active' : ''}
-                        disabled={soloing || track.loading}
+                    <button title="Mute"
+                        className={track.muted ? 'active' : ''}
+                        disabled={track.loading || !track.playing || soloing}
                         onClick={track.muted ? unmute : mute}>
                         M
                     </button>
-                    <button className={track.soloed ? 'active' : ''}
-                        disabled={track.loading}
+                    <button title="Solo"
+                        className={track.soloed ? 'active' : ''}
+                        disabled={track.loading || !track.playing}
                         onClick={track.soloed ? unsolo : solo}>
                         S
                     </button>
