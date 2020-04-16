@@ -1,13 +1,9 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
-const TerserJSPlugin = require('terser-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const TerserJSPlugin = require("terser-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 
-const CDNs = [
-    "https://cycles1.willkommenrecords.co.uk",
-    "https://cycles2.willkommenrecords.co.uk",
-    "https://cycles3.willkommenrecords.co.uk",
-];
+const { CDNs } = require("./CDNs");
 let resources = new Proxy({}, {
     get: (target, name) => name in target ? target[name] : 0
 });
@@ -15,7 +11,7 @@ let resources = new Proxy({}, {
 module.exports = (env, argv) => ({
     output: {
         publicPath: "/cycles/",
-        filename: argv.mode === "production" ? '[name].[contenthash].js' : '[name].js',
+        filename: argv.mode === "production" ? "[name].[contenthash].js" : "[name].js",
     },
     devServer: {
         publicPath: "/cycles/",
@@ -36,7 +32,7 @@ module.exports = (env, argv) => ({
             options: {
                 publicPath: (url, resourcePath, context) => {
                     if (argv.mode === "production") {
-                        const index = resources[resourcePath.split('.').pop()]++;
+                        const index = resources[resourcePath.split(".").pop()]++;
                         return `${CDNs[index % CDNs.length]}/${url}`;
                     }
                     return url;
@@ -79,8 +75,8 @@ module.exports = (env, argv) => ({
             filename: "./index.html"
         }),
         new MiniCssExtractPlugin({
-            filename: argv.mode === "production" ? '[name].[hash].css' : '[name].css',
-            chunkFilename: argv.mode === "production" ? '[id].[hash].css' : '[id].css',
+            filename: argv.mode === "production" ? "[name].[hash].css" : "[name].css",
+            chunkFilename: argv.mode === "production" ? "[id].[hash].css" : "[id].css",
         }),
     ]
 });
