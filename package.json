@@ -6,6 +6,7 @@
   "scripts": {
     "start": "webpack-dev-server --open --mode development",
     "build": "webpack --mode production",
+    "transcode": "node ./scripts/transcode.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
