@@ -31,7 +31,7 @@ module.exports = (env, argv) => ({
             },
         },
         {
-            test: /\.(svg|mp3|webm)$/,
+            test: /\.(mp3|webm)$/,
             loader: "file-loader",
             options: {
                 publicPath: (url, resourcePath, context) => {
