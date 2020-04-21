@@ -1,4 +1,13 @@
+import { AudioContext } from 'standardized-audio-context';
+
 import { Track } from "./Track";
+
+const ua = window.navigator.userAgent;
+const iOSSafari = (
+    (!!ua.match(/iPad/i) || !!ua.match(/iPhone/i)) &&
+    !!ua.match(/WebKit/i) &&
+    !ua.match(/CriOS/i)
+);
 
 export class Mixer {
     constructor(dispatch, tracks) {
@@ -10,14 +19,16 @@ export class Mixer {
     }
 
     start(state) {
-        let AudioContext = window.AudioContext || window.webkitAudioContext;
         let ctx = new AudioContext();
+        ctx.resume();
 
         this.analyserNode = ctx.createAnalyser();
         this.analyserNode.connect(ctx.destination);
 
         for (const id in this.tracks) {
-            this.tracks[id].init(ctx).connect(this.analyserNode);
+            if (!iOSSafari) {
+                this.tracks[id].init(ctx).connect(this.analyserNode);
+            }
             if (state[id].playing) {
                 this.tracks[id].play();
             } else {
