@@ -3,7 +3,10 @@ import { loadedTrack } from "../actions";
 const RAMP_OFFSET = 0.1; // 100ms
 
 export class Track {
-    constructor(dispatch, id, data) {
+    constructor(ctx, dispatch, id, data, destination, webAudio) {
+        this.ctx = ctx;
+        this.webAudio = webAudio;
+
         this.audio = new Audio();
         this.audio.preload = "none";
         this.audio.loop = true;
@@ -16,28 +19,25 @@ export class Track {
         this.audio.addEventListener("canplay", () => {
             dispatch(loadedTrack(id));
         })
-    }
 
-    init(ctx) {
-        this.ctx = ctx;
+        if (webAudio) {
+            this.audioNode = this.ctx.createMediaElementSource(this.audio);
 
-        this.audioNode = ctx.createMediaElementSource(this.audio);
+            this.gainNode = this.ctx.createGain();
+            this.gainNode.gain.value = 1;
 
-        this.gainNode = ctx.createGain();
-        this.gainNode.gain.value = 1;
+            this.panNode = this.ctx.createPanner();
+            this.panNode.panningModel = "equalpower";
 
-        this.panNode = ctx.createPanner();
-        this.panNode.panningModel = "equalpower";
+            this.muteNode = this.ctx.createGain();
+            this.muteNode.gain.value = 1;
 
-        this.muteNode = ctx.createGain();
-        this.muteNode.gain.value = 1;
-
-        this.audioNode
-            .connect(this.gainNode)
-            .connect(this.panNode)
-            .connect(this.muteNode);
-
-        return this.muteNode;
+            this.audioNode
+                .connect(this.gainNode)
+                .connect(this.panNode)
+                .connect(this.muteNode)
+                .connect(destination);
+        }
     }
 
     load() {
@@ -65,27 +65,41 @@ export class Track {
     }
 
     mute() {
-        this.muteNode.gain.linearRampToValueAtTime(
-            0,
-            this.ctx.currentTime + RAMP_OFFSET
-        );
+        if (this.webAudio) {
+            this.muteNode.gain.linearRampToValueAtTime(
+                0,
+                this.ctx.currentTime + RAMP_OFFSET
+            );
+        } else {
+            this.pause();
+        }
     }
 
     unmute() {
-        this.muteNode.gain.linearRampToValueAtTime(
-            1.0,
-            this.ctx.currentTime + RAMP_OFFSET
-        );
+        if (this.webAudio) {
+            this.muteNode.gain.linearRampToValueAtTime(
+                1.0,
+                this.ctx.currentTime + RAMP_OFFSET
+            );
+        } else {
+            this.play();
+        }
     }
 
     gain(value) {
-        this.muteNode.gain.linearRampToValueAtTime(
-            value,
-            this.ctx.currentTime + RAMP_OFFSET
-        );
+        if (this.webAudio) {
+            this.muteNode.gain.linearRampToValueAtTime(
+                value,
+                this.ctx.currentTime + RAMP_OFFSET
+            );
+        } else {
+            this.audio.volume = value;
+        }
     }
 
     pan(value) {
-        this.panNode.setPosition(value, 0, 1.0 - Math.abs(value));
+        if (this.webAudio) {
+            this.panNode.setPosition(value, 0, 1.0 - Math.abs(value));
+        }
     }
 }

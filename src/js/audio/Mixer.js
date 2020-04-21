@@ -1,35 +1,36 @@
 import { AudioContext } from 'standardized-audio-context';
 
+import { setAnalyser } from "../actions";
 import { Track } from "./Track";
 
-const ua = window.navigator.userAgent;
-const iOSSafari = (
-    (!!ua.match(/iPad/i) || !!ua.match(/iPhone/i)) &&
-    !!ua.match(/WebKit/i) &&
-    !ua.match(/CriOS/i)
-);
-
 export class Mixer {
-    constructor(dispatch, tracks) {
+    constructor(dispatch, tracks, webAudio) {
+        if (webAudio) {
+            this.ctx = new AudioContext();
+            this.ctx.resume();
+
+            this.analyserNode = this.ctx.createAnalyser();
+            this.analyserNode.connect(this.ctx.destination);
+            dispatch(setAnalyser(this.analyserNode))
+        }
+
         this.tracks = Object.assign(
             {},
             ...Object.keys(tracks)
-                .map(id => ({ [id]: new Track(dispatch, id, tracks[id]) }))
+                .map(id => ({
+                    [id]: new Track(
+                        this.ctx,
+                        dispatch,
+                        id,
+                        tracks[id],
+                        this.analyserNode,
+                        webAudio
+                    )
+                }))
         );
-    }
-
-    start(state) {
-        let ctx = new AudioContext();
-        ctx.resume();
-
-        this.analyserNode = ctx.createAnalyser();
-        this.analyserNode.connect(ctx.destination);
 
         for (const id in this.tracks) {
-            if (!iOSSafari) {
-                this.tracks[id].init(ctx).connect(this.analyserNode);
-            }
-            if (state[id].playing) {
+            if (tracks[id].playing) {
                 this.tracks[id].play();
             } else {
                 this.tracks[id].load();

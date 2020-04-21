@@ -9,18 +9,25 @@ import {
     SET_TRACK_GAIN,
     SET_TRACK_PAN
 } from "../actions/types";
-import { setAnalyser } from "../actions";
 import { Mixer } from "./Mixer";
 
+// Don't use Web Audio API on iOS
+const ua = window.navigator.userAgent;
+const iOSSafari = (
+    (!!ua.match(/iPad/i) || !!ua.match(/iPhone/i)) &&
+    !!ua.match(/WebKit/i) &&
+    !ua.match(/CriOS/i)
+);
+const webAudio = !iOSSafari;
+
 export const audioMiddleware = ({ getState, dispatch }) => {
-    const mixer = new Mixer(dispatch, getState().tracks);
+    let mixer = null;
 
     return next => action => {
         next(action);
         switch (action.type) {
             case ENABLE:
-                mixer.start(getState().tracks);
-                dispatch(setAnalyser(mixer.analyserNode));
+                mixer = new Mixer(dispatch, getState().tracks, webAudio);
                 break;
             case PLAY_TRACK:
                 mixer.playTrack(action.id);

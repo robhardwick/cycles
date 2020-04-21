@@ -11,11 +11,13 @@ export const Mixer = () => {
     const soloing = Object.keys(tracks).some(id => tracks[id].soloed);
     return (
         <>
-            <div className="visualiser">
-                <Visualiser analyser={analyser}
-                    offsetX={30}
-                    offsetY={380} />
-            </div>
+            {analyser &&
+                <div className="visualiser">
+                    <Visualiser analyser={analyser}
+                        offsetX={30}
+                        offsetY={380} />
+                </div>
+            }
             <div className="tracks">
                 {Object.keys(tracks)
                     .sort()
