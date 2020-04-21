@@ -40,22 +40,28 @@ export class Track {
         return this.muteNode;
     }
 
-    async load() {
+    load() {
         try {
-            await this.audio.load();
-        } catch (err) { }
+            this.audio.load();
+        } catch (e) {
+            console.error('load error', e);
+        }
     }
 
-    async play() {
+    play() {
         try {
-            await this.audio.play();
-        } catch (err) { }
+            this.audio.play();
+        } catch (e) {
+            console.error('play error', e);
+        }
     }
 
-    async pause() {
+    pause() {
         try {
             this.audio.pause();
-        } catch (err) { }
+        } catch (e) {
+            console.error('pause error', e);
+        }
     }
 
     mute() {
