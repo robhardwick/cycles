@@ -15,7 +15,7 @@ export const Mixer = () => {
                 <div className="visualiser">
                     <Visualiser analyser={analyser}
                         offsetX={30}
-                        offsetY={380} />
+                        offsetY={600} />
                 </div>
             }
             <div className="tracks">

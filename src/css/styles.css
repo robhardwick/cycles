@@ -10,9 +10,9 @@ html, body {
 .bg {
     position: fixed;
     top: 0;
+    right: 0;
     bottom: 0;
-    height: 100%;
-    width: 100%;
+    left: 0;
     z-index: -1;
     fill: white;
     stroke: black;
@@ -60,11 +60,17 @@ button:active:not(:disabled) {
 
 .visualiser {
     padding: 20px;
+    height: 30%;
+    justify-content: center;
 }
 
 .tracks {
+    flex: 1;
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: center;
+    height: 280px;
 }
 
 .track {
@@ -72,8 +78,9 @@ button:active:not(:disabled) {
     justify-content: center;
     align-items: stretch;
     box-sizing: border-box;
-    width: 7.5%;
-    padding: 10px;
+    min-width: 80px;
+    height: 270px;
+    padding: 5px;
 }
 
 .track:before {
@@ -155,58 +162,15 @@ button:active:not(:disabled) {
 }
 
 .donate {
+    position: fixed;
+    bottom: 5px;
+    right: 5px;
     text-align: right;
-    margin: 20px 20px 0 0;
+    padding: 10px;
+    background-color: white;
 }
 
 .donate a {
     color: black;
     padding: 5px;
-}
-
-@media screen and (max-width: 1280px) {
-    .tracks {
-        flex-flow: row wrap;
-    }
-    .track {
-        width: 50%;
-    }
-    .track:before {
-        padding-top: 20%;
-    }
-    .track-controls h1 {
-        font-size: 4em;
-        height: 2em;
-        margin-bottom: 20px;
-    }
-    .track-controls .rc-slider-handle {
-        width: 40px;
-        height: 40px;
-        margin-top: -18px;
-    }
-    .track-controls .rc-slider-vertical .rc-slider-handle {
-        margin-left: -18px;
-    }
-    .track-controls .gain,
-    .track-controls .pan {
-        margin-bottom: 30px;
-    }
-    .track-controls .gain .rc-slider {
-        height: 200px;
-    }
-    .track-controls .muting {
-        margin: 30px 0;
-    }
-    .track-controls .muting button {
-        width: 100px;
-        font-size: 2em;
-    }
-    .track-controls .loading,
-    .track-controls .play {
-        margin-bottom: 30px;
-    }
-    .track-controls .loading button,
-    .track-controls .play button {
-        font-size: 2em;
-    }
 }
