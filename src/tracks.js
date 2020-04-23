@@ -36,6 +36,21 @@ import linus_webm from "./media/audio/Modern Nature & Friends - Cycles - 21 Linu
 import linus_mp3 from "./media/audio/Modern Nature & Friends - Cycles - 21 Linus Fenton (bass).mp3";
 import zebedee_webm from "./media/audio/Modern Nature & Friends - Cycles - 22 Zebedee C. Budworth (dulcimer).webm";
 import zebedee_mp3 from "./media/audio/Modern Nature & Friends - Cycles - 22 Zebedee C. Budworth (dulcimer).mp3";
+import jimn_webm from "./media/audio/Modern Nature & Friends - Cycles - 23 Jim Noir (synths).webm";
+import jimn_mp3 from "./media/audio/Modern Nature & Friends - Cycles - 23 Jim Noir (synths).mp3";
+import mary_webm from "./media/audio/Modern Nature & Friends - Cycles - 24 Mary Erskine (field recordings).webm";
+import mary_mp3 from "./media/audio/Modern Nature & Friends - Cycles - 24 Mary Erskine (field recordings).mp3";
+import wills_webm from "./media/audio/Modern Nature & Friends - Cycles - 25 Will Stratton (piano).webm";
+import wills_mp3 from "./media/audio/Modern Nature & Friends - Cycles - 25 Will Stratton (piano).mp3";
+import isabel_webm from "./media/audio/Modern Nature & Friends - Cycles - 26 Isabel Sörling (voice and fx).webm";
+import isabel_mp3 from "./media/audio/Modern Nature & Friends - Cycles - 26 Isabel Sörling (voice and fx).mp3";
+import liam_webm from "./media/audio/Modern Nature & Friends - Cycles - 27 Liam Ogburn (bass).webm";
+import liam_mp3 from "./media/audio/Modern Nature & Friends - Cycles - 27 Liam Ogburn (bass).mp3";
+import sebastian_webm from "./media/audio/Modern Nature & Friends - Cycles - 28 Sebastian Westwood (acoustic guitar).webm";
+import sebastian_mp3 from "./media/audio/Modern Nature & Friends - Cycles - 28 Sebastian Westwood (acoustic guitar).mp3";
+import oli_webm from "./media/audio/Modern Nature & Friends - Cycles - 29 Oli Burslem (electric guitar).webm";
+import oli_mp3 from "./media/audio/Modern Nature & Friends - Cycles - 29 Oli Burslem (electric guitar).mp3";
+
 
 const trackDefaults = {
     loading: true,
@@ -57,7 +72,7 @@ const tracks = {
     },
     jim: {
         ...trackDefaults,
-        title: "Jim",
+        title: "Jim W.",
         files: {
             webm: jim_webm,
             mp3: jim_mp3,
@@ -65,7 +80,7 @@ const tracks = {
     },
     will: {
         ...trackDefaults,
-        title: "Will",
+        title: "Will Y.",
         files: {
             webm: will_webm,
             mp3: will_mp3,
@@ -199,10 +214,66 @@ const tracks = {
             mp3: zebedee_mp3,
         },
     },
+    jimn: {
+        ...trackDefaults,
+        title: "Jim N.",
+        files: {
+            webm: jimn_webm,
+            mp3: jimn_mp3,
+        },
+    },
+    mary: {
+        ...trackDefaults,
+        title: "Mary",
+        files: {
+            webm: mary_webm,
+            mp3: mary_mp3,
+        },
+    },
+    wills: {
+        ...trackDefaults,
+        title: "Will S.",
+        files: {
+            webm: wills_webm,
+            mp3: wills_mp3,
+        },
+    },
+    isabel: {
+        ...trackDefaults,
+        title: "Isabel",
+        files: {
+            webm: isabel_webm,
+            mp3: isabel_mp3,
+        },
+    },
+    liam: {
+        ...trackDefaults,
+        title: "Liam",
+        files: {
+            webm: liam_webm,
+            mp3: liam_mp3,
+        },
+    },
+    sebastian: {
+        ...trackDefaults,
+        title: "Sebastian",
+        files: {
+            webm: sebastian_webm,
+            mp3: sebastian_mp3,
+        },
+    },
+    oli: {
+        ...trackDefaults,
+        title: "Oli",
+        files: {
+            webm: oli_webm,
+            mp3: oli_mp3,
+        },
+    }
 };
 
 // Randomly select half of the tracks to autoplay
-const EXCLUDE = ["ryley"];
+const EXCLUDE = ["ryley", "linus", "sebastian"];
 const IDs = Object.keys(tracks);
 const NUMBER = Math.floor(IDs.length / 2);
 const autoPlay = IDs.filter(id => !(EXCLUDE.includes(id)))
