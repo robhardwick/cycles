@@ -56,8 +56,8 @@ import jonathan_mp3 from "./media/audio/Modern Nature & Friends - Cycles - 30 Jo
 
 const trackDefaults = {
     loading: true,
-    playing: false,
-    muted: false,
+    playing: true,
+    muted: true,
     soloed: false,
     gain: 1,
     pan: 0,
@@ -282,7 +282,7 @@ const tracks = {
     }
 };
 
-// Randomly select half of the tracks to autoplay
+// Randomly select half of the tracks to be unmuted
 const EXCLUDE = ["ryley", "linus", "sebastian"];
 const IDs = Object.keys(tracks);
 const NUMBER = Math.floor(IDs.length / 2);
@@ -291,7 +291,7 @@ const autoPlay = IDs.filter(id => !(EXCLUDE.includes(id)))
     .slice(0, NUMBER);
 
 for (const id of autoPlay) {
-    tracks[id].playing = true;
+    tracks[id].muted = false;
 }
 
 export { tracks };

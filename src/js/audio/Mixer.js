@@ -30,10 +30,9 @@ export class Mixer {
         );
 
         for (const id in this.tracks) {
-            if (tracks[id].playing) {
-                this.tracks[id].play();
-            } else {
-                this.tracks[id].load();
+            this.tracks[id].play();
+            if (tracks[id].muted) {
+                this.tracks[id].mute();
             }
         }
     }
