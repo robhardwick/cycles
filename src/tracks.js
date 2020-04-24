@@ -50,6 +50,8 @@ import sebastian_webm from "./media/audio/Modern Nature & Friends - Cycles - 28 
 import sebastian_mp3 from "./media/audio/Modern Nature & Friends - Cycles - 28 Sebastian Westwood (acoustic guitar).mp3";
 import oli_webm from "./media/audio/Modern Nature & Friends - Cycles - 29 Oli Burslem (electric guitar).webm";
 import oli_mp3 from "./media/audio/Modern Nature & Friends - Cycles - 29 Oli Burslem (electric guitar).mp3";
+import jonathan_webm from "./media/audio/Modern Nature & Friends - Cycles - 30 Jonathan Schenke (MS-20 and voice).webm";
+import jonathan_mp3 from "./media/audio/Modern Nature & Friends - Cycles - 30 Jonathan Schenke (MS-20 and voice).mp3";
 
 
 const trackDefaults = {
@@ -268,6 +270,14 @@ const tracks = {
         files: {
             webm: oli_webm,
             mp3: oli_mp3,
+        },
+    },
+    jonathan: {
+        ...trackDefaults,
+        title: "Jonathan",
+        files: {
+            webm: jonathan_webm,
+            mp3: jonathan_mp3,
         },
     }
 };
