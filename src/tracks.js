@@ -52,6 +52,8 @@ import oli_webm from "./media/audio/Modern Nature & Friends - Cycles - 29 Oli Bu
 import oli_mp3 from "./media/audio/Modern Nature & Friends - Cycles - 29 Oli Burslem (electric guitar).mp3";
 import jonathan_webm from "./media/audio/Modern Nature & Friends - Cycles - 30 Jonathan Schenke (MS-20 and voice).webm";
 import jonathan_mp3 from "./media/audio/Modern Nature & Friends - Cycles - 30 Jonathan Schenke (MS-20 and voice).mp3";
+import henry_webm from "./media/audio/Modern Nature & Friends - Cycles - 31 Henry Senior (Pedal Steel).webm";
+import henry_mp3 from "./media/audio/Modern Nature & Friends - Cycles - 31 Henry Senior (Pedal Steel).mp3";
 
 
 const trackDefaults = {
@@ -278,6 +280,14 @@ const tracks = {
         files: {
             webm: jonathan_webm,
             mp3: jonathan_mp3,
+        },
+    },
+    henry: {
+        ...trackDefaults,
+        title: "Henry",
+        files: {
+            webm: henry_webm,
+            mp3: henry_mp3,
         },
     }
 };
